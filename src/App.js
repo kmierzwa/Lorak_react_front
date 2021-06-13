@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Contacts from './components/contacts';
+import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [users, setUsers] = useState();
+  
+ 
+  useEffect(async () => {
+    //axios jest do feczowania
+    const result = await axios(
+      'http://10.20.10.4:8081',
+    );
+    setUsers(result.data);
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {users &&
+        <Contacts users={users} />
+      }
     </div>
   );
 }
