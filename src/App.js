@@ -10,7 +10,7 @@ function App() {
   useEffect(async () => {
     //axios jest do feczowania
     const result = await axios(
-      'http://10.20.10.4:8081',
+      'https://api.lorak.com.pl',
     );
     setUsers(result.data);
   });
