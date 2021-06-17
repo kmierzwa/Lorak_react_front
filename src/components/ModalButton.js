@@ -18,19 +18,22 @@ const ModalButton = ({ onSubmit }) => {
   const handleShow = () => setShow(true);
 
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [login, setLogin] = useState("");
+  const [pass, setPass] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${configData.SERVER_URL}dupa`, {
         firstName,
-        lastName: "test",
-        login: "d",
-        pass: "d",
+        lastName,
+        login,
+        pass,
       })
       .catch(() =>
         console.log(
-          "warto obsłużyć w jakiś sposób błąd - najlepiej byłoby coś wyżwietlić userowi xD"
+          "warto obsłużyć w jakiś sposób błąd - najlepiej byłoby coś wyswietlić userowi xD"
         )
       );
     //poprostu zamykamy, ale fajniej byłoby coś pokazać
@@ -56,6 +59,28 @@ const ModalButton = ({ onSubmit }) => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
+             <Form.Label>Nazwisko</Form.Label>
+            <Form.Control
+              placeholder="Nazwisko"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <Form.Label>Login</Form.Label>
+            <Form.Control
+              placeholder="login"
+              type="text"
+              value={login}
+              onChange={(e) => setLogin(e.target.value)}
+            />  
+            <Form.Label>Hasło</Form.Label>
+            <Form.Control
+              placeholder="Hasłó"
+              type="text"
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
+            />
+            
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
