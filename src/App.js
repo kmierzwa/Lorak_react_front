@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Contacts from './components/contacts';
-import axios from 'axios'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import configData from "./config.json";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Contacts from "./components/DataTables/Contacts";
+import Dupa from "./components/DataTables/Dupa";
+import Dziwki from "./components/DataTables/Dziwki";
+import Header from "./components/Header";
 
-function App() {
-  const [users, setUsers] = useState();
-
-
-
-  useEffect(async () => {
-    //axios jest do feczowania
-    const result = await axios(
-      configData.SERVER_URL,
-    );
-    setUsers(result.data);
-  },[]);
-
-  return (
-    <div>
-      {users &&
-        <Contacts users={users} />
-      }
-    </div>
-  );
-}
+const App = () => (
+  <React.StrictMode>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Contacts} />
+        <Route path="/dupa" component={Dupa} />
+        <Route path="/dziwki" component={Dziwki} />
+      </Switch>
+    </Router>
+  </React.StrictMode>
+);
 
 export default App;
