@@ -2,7 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Contacts from "./components/DataTables/Contacts";
 import Dupa from "./components/DataTables/Dupa";
+import Home from "./components/DataTables/Home";
 import Dziwki from "./components/DataTables/Dziwki";
+import Payee from "./components/DataTables/Payee";
+import Process from "./components/DataTables/Process";
 import Header from "./components/Header";
 
 const App = () => (
@@ -10,9 +13,12 @@ const App = () => (
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/" component={Contacts} />
+        <Route exact path="/" component={Home} />
+        <Route path="/users" component={Contacts} />
         <Route path="/dupa" component={Dupa} />
         <Route path="/dziwki" component={Dziwki} />
+        <Route path="/payee" component={Payee} />
+        <Route path="/process" component={Process} />
       </Switch>
     </Router>
   </React.StrictMode>
