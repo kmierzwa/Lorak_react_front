@@ -25,7 +25,7 @@ const ModalButton = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${configData.SERVER_URL}dupa`, {
+      .post(`${configData.SERVER_URL}/adduser`, {
         firstName,
         lastName,
         login,

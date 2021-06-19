@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import ModalButton from "../ModalButton";
 import axios from "axios";
 import configData from "../../config.json";
 

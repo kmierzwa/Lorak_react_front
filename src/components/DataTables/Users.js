@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import {Container,Row,Col} from "react-bootstrap";
-import ModalButton from "../ModalButton";
+import AddButton from "../AddButton";
 import RemoveButton from "../RemoveButton"
 import axios from "axios";
 import configData from "../../config.json";
@@ -13,7 +13,7 @@ const GetUsers = () => {
 
   useEffect(async () => {
     //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
-    const result = await axios(configData.SERVER_URL);
+    const result = await axios(configData.SERVER_URL +'/showusers');
     setUsers(result.data);
   }, users);
   //onsubmit dodaje zeby przeladowac komponent
@@ -21,7 +21,7 @@ const GetUsers = () => {
     <>
     <Container>
       <Row className="add-space">
-        <Col><ModalButton onSubmit={setUsers} />
+        <Col><AddButton onSubmit={setUsers} />
         <RemoveButton onSubmit={setUsers} /> </Col>
       </Row>
       </Container>    

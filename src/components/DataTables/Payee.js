@@ -1,51 +1,73 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import ModalButton from "../ModalButton";
+import {Container,Row,Col, DropdownButton, Dropdown} from "react-bootstrap";
+import AddButton from "../AddButton";
+import RemoveButton from "../RemoveButton"
 import axios from "axios";
 import configData from "../../config.json";
 
-const Dupa = ({ users }) => {
-  const [isInputsDisplay, setInputDisplay] = useState(false);
 
-  //hooki - poczytac
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+
+const GetPayees = () => {
+  const [payees, setPayees] = useState();
+
+  useEffect(async () => {
+    //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
+    const result = await axios(configData.SERVER_URL +'/showpayee');
+    setPayees(result.data);
+  }, payees);
 
   return (
-    <Table striped bordered hover responsive="sm">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Surname</th>
-          <th>Email</th>
-          <th>Password</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users &&
-          users.map((contact) => (
-            <tr>
-              <td>{contact.id_user}</td>
-              <td>{contact.firstname_user}</td>
-              <td>{contact.lastname_user}</td>
-              <td>{contact.login_user}</td>
-              <td>{contact.password_user}</td>
-              <td>
-                <a
-                  href="#"
-                  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                >
-                  <i class="fas fa-download fa-sm text-white-50"></i> Dawaj
-                  HAJS!
-                </a>
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </Table>
+    <>
+    <Container>
+      <Row className="add-space">
+        <Col><AddButton onSubmit={setPayees} />
+        <RemoveButton onSubmit={setPayees} /> </Col>
+      </Row>
+      </Container>    
+      <Container>
+        <Row className="add-space">
+          <Col>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+            <th>Birth date</th>
+            <th>Phone</th>
+            <th>Unit Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          {payees ? (
+            payees.map((payee) => (
+              <tr>
+                <td>{payee.lastname}</td>
+                <td>{payee.firstname}</td>
+                <td>{payee.email}</td>
+                <td>{payee.birth_date}</td>
+                <td>{payee.home_phone}</td>
+                <td>
+                  <DropdownButton id="dropdown-basic-button" title={payee.unit_code}>
+                  <Dropdown.Item href="#/action-1">France</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Germany</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Poland</Dropdown.Item>
+                  </DropdownButton></td>
+              </tr>
+            ))
+          ) : (
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          )}
+        </tbody>
+      </Table>
+      </Col>
+      </Row>
+      </Container>
+    </>
   );
 };
 
-export default Dupa;
+export default GetPayees;
