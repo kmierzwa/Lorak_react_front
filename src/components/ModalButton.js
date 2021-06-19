@@ -43,49 +43,51 @@ const ModalButton = ({ onSubmit }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Dodaj
+      <Button variant="success" onClick={handleShow}>
+        Add user
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add new user</Modal.Title>
         </Modal.Header>
+        <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Imie</Form.Label>
+            <Form.Label>Name</Form.Label>
             <Form.Control
-              placeholder="Imiem"
+              placeholder="John"
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
-             <Form.Label>Nazwisko</Form.Label>
+             <Form.Label>Surname</Form.Label>
             <Form.Control
-              placeholder="Nazwisko"
+              placeholder="Travolta"
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
             <Form.Label>Login</Form.Label>
             <Form.Control
-              placeholder="login"
+              placeholder="j.travolta@domain.com"
               type="text"
               value={login}
               onChange={(e) => setLogin(e.target.value)}
             />  
-            <Form.Label>Hasło</Form.Label>
+            <Form.Label>Password</Form.Label>
             <Form.Control
-              placeholder="Hasłó"
+              placeholder="****"
               type="text"
               value={pass}
               onChange={(e) => setPass(e.target.value)}
             />
             
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
+          <Button variant="success" type="submit">
+            Add
           </Button>
         </Form>
+        </Modal.Body>
       </Modal>
     </>
   );

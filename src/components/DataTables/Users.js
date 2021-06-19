@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import {Container,Row,Col} from "react-bootstrap";
 import ModalButton from "../ModalButton";
+import RemoveButton from "../RemoveButton"
 import axios from "axios";
 import configData from "../../config.json";
+import '../../App.css';
 
-const Contacts = () => {
+
+const GetUsers = () => {
   const [users, setUsers] = useState();
 
   useEffect(async () => {
@@ -15,36 +19,34 @@ const Contacts = () => {
   //onsubmit dodaje zeby przeladowac komponent
   return (
     <>
-      <ModalButton onSubmit={setUsers} />
-      <Table striped bordered hover responsive="sm">
+    <Container>
+      <Row className="add-space">
+        <Col><ModalButton onSubmit={setUsers} />
+        <RemoveButton onSubmit={setUsers} /> </Col>
+      </Row>
+      </Container>    
+      <Container>
+        <Row className="add-space">
+          <Col>
+      <Table striped bordered hover>
         <thead>
           <tr>
+            <th></th>
             <th>ID</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Email</th>
-            <th>Password</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {users ? (
-            users.map((contact) => (
+            users.map((user) => (
               <tr>
-                <td>{contact.id_user}</td>
-                <td>{contact.firstname_user}</td>
-                <td>{contact.lastname_user}</td>
-                <td>{contact.login_user}</td>
-                <td>{contact.password_user}</td>
-                <td>
-                  <a
-                    href="#"
-                    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                  >
-                    <i class="fas fa-download fa-sm text-white-50"></i> Dawaj
-                    HAJS!
-                  </a>
-                </td>
+                <td><input type="checkbox" value="" id="flexCheckDefault"></input></td>
+                <td>{user.id_user}</td>
+                <td>{user.firstname_user}</td>
+                <td>{user.lastname_user}</td>
+                <td>{user.login_user}</td>
               </tr>
             ))
           ) : (
@@ -54,8 +56,11 @@ const Contacts = () => {
           )}
         </tbody>
       </Table>
+      </Col>
+      </Row>
+      </Container>
     </>
   );
 };
 
-export default Contacts;
+export default GetUsers;
