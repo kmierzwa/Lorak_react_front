@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GetUsers from "./components/DataTables/Users";
 import Dupa from "./components/DataTables/Dupa";
 import Home from "./components/DataTables/Home";
-import Dziwki from "./components/DataTables/Dziwki";
+import unitmaster from "./components/DataTables/UnitMaster";
 import Payee from "./components/DataTables/Payee";
 import Process from "./components/DataTables/Process";
 import Header from "./components/Header";
@@ -16,7 +16,7 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route path="/users" component={GetUsers} />
         <Route path="/dupa" component={Dupa} />
-        <Route path="/dziwki" component={Dziwki} />
+        <Route path="/unitmaster" component={unitmaster} />
         <Route path="/payee" component={Payee} />
         <Route path="/process" component={Process} />
       </Switch>
