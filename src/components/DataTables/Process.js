@@ -4,46 +4,55 @@ import Header from "../Header";
 import axios from "axios";
 import configData from "../../config.json";
 
-const Process = ({ users }) => {
-  const [isInputsDisplay, setInputDisplay] = useState(false);
+const Process = () => {
+  const [process, setProcess] = useState(false);
 
-  //hooki - poczytac
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  useEffect(async () => {
+    //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
+    const result = await axios(configData.SERVER_URL +'/showprocess');
+    setProcess(result.data);
+  }, process);
 
   return (
     <><Header />
     <Table striped bordered hover responsive="sm">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Surname</th>
-          <th>Email</th>
-          <th>Password</th>
-          <th>Action</th>
+          <th>idPayee</th>
+          <th>UnitId</th>
+          <th>UnitCode</th>
+          <th>id_user_PPM</th>
+          <th>PayPlanManagerFirstName</th>
+          <th>PayPlanManagerLastName</th>
+          <th>lastname</th>
+          <th>FirstName</th>
+          <th>BasePay</th>
+          <th>BasePayIncPct</th>
+          <th>BasePayIncr</th>
         </tr>
       </thead>
       <tbody>
-        {users &&
-          users.map((contact) => (
+        {process ?(
+          process.map((proc) => (
             <tr>
-              <td>{contact.id_user}</td>
-              <td>{contact.firstname_user}</td>
-              <td>{contact.lastname_user}</td>
-              <td>{contact.login_user}</td>
-              <td>{contact.password_user}</td>
-              <td>
-                <a
-                  href="#"
-                  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                >
-                  <i class="fas fa-download fa-sm text-white-50"></i> Dawaj
-                  HAJS!
-                </a>
-              </td>
+              <td>{proc.idPayee}</td>
+              <td>{proc.UnitId}</td>
+              <td>{proc.UnitCode}</td>
+              <td>{proc.id_user_PPM}</td>
+              <td>{proc.PayPlanManagerFirstName}</td>
+              <td>{proc.PayPlanManagerLastName}</td>
+              <td>{proc.lastname}</td>
+              <td>{proc.FirstName}</td>
+              <td>{proc.BasePay}</td>
+              <td>{proc.BasePayIncPct}</td>
+              <td>{proc.BasePayIncr}</td>       
             </tr>
-          ))}
+          ))
+          ) : (
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          )}
       </tbody>
     </Table>
     </>

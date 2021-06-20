@@ -16,13 +16,13 @@ const Header = () => (
         <LinkContainer to="/dupa">
           <Nav.Link>Hierarchy Mapping</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/dziwki">
+        <LinkContainer to="/unitmaster">
           <Nav.Link>Unit Master</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/payee">
           <Nav.Link>Payee</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/history">
+        <LinkContainer to="/process">
           <Nav.Link>Process</Nav.Link>
         </LinkContainer>
       </Nav>
