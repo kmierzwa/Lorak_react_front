@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import Header from "../Header";
 import axios from "axios";
 import configData from "../../config.json";
 
@@ -11,6 +12,7 @@ const Process = ({ users }) => {
   const [lastName, setLastName] = useState("");
 
   return (
+    <><Header />
     <Table striped bordered hover responsive="sm">
       <thead>
         <tr>
@@ -44,6 +46,7 @@ const Process = ({ users }) => {
           ))}
       </tbody>
     </Table>
+    </>
   );
 };
 

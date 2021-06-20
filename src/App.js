@@ -6,19 +6,19 @@ import Home from "./components/DataTables/Home";
 import Dziwki from "./components/DataTables/Dziwki";
 import Payee from "./components/DataTables/Payee";
 import Process from "./components/DataTables/Process";
-import Header from "./components/Header";
+import Login from "./components/Login";
 
 const App = () => (
   <React.StrictMode>
     <Router>
-      <Header />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Login} />
         <Route path="/users" component={GetUsers} />
         <Route path="/dupa" component={Dupa} />
         <Route path="/dziwki" component={Dziwki} />
         <Route path="/payee" component={Payee} />
         <Route path="/process" component={Process} />
+        <Route path="/home" component={Home} />
       </Switch>
     </Router>
   </React.StrictMode>

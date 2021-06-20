@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import {Container,Row,Col, DropdownButton, Dropdown} from "react-bootstrap";
 import AddButton from "../AddButton";
+import Header from "../Header";
 import RemoveButton from "../RemoveButton"
 import axios from "axios";
 import configData from "../../config.json";
@@ -19,6 +20,7 @@ const GetPayees = () => {
 
   return (
     <>
+    <Header />
     <Container>
       <Row className="add-space">
         <Col><AddButton onSubmit={setPayees} />

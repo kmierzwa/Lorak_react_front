@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Jumbotron, Button } from "react-bootstrap";
+import { Container, Row, Col, Jumbotron, Button, Image} from "react-bootstrap";
 import axios from "axios";
 import configData from "../../config.json";
 import '../../App.css';
 import ChartsPage from '../dashboards/bar';
+import Header from "../Header";
 import LinePage from '../dashboards/line';
 import SpiderPage from '../dashboards/spider';
 import logo from '../../images/Money_home.png';
-import { Line } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
 
 
 const Home = ({ users }) => {
@@ -21,11 +20,12 @@ const Home = ({ users }) => {
 
   return (
     <>
+    <Header />
       <Row>
-        <Col className="add-space" xs lg="2">
-          <img src={logo} alt="logo" class="logo"/>
+        <Col className="add-space" md lg xl sm ="2" >
+        <Image src={logo} rounded />
         </Col>
-        <Col className="add-space" xs lg="8">
+        <Col className="add-space" sm md lg xl="10">
           <Jumbotron>
             <h1><b>LORAK&NICRAM</b></h1>
             <p>
@@ -39,22 +39,20 @@ const Home = ({ users }) => {
           </Jumbotron>
         </Col>
       </Row>
-      <Container sm md lg="4">
+      <Container>
         <Row>
-          <Col><ChartsPage /></Col>
-          <Col><LinePage /></Col>
+          <Col sm={12} md={6} lg={6}><ChartsPage class="bar"/></Col>
+          <Col sm={12} md={6} lg={6}><LinePage /></Col>
         </Row>
       </Container>
-      <Container sm md lg="12">
+      <Container >
         <Row>
-          <Col><SpiderPage /></Col>
+          <Col sm md lg xl="12"><SpiderPage /></Col>
         </Row>
       </Container>
     </>
   );
 
 }
-
-
 
 export default Home

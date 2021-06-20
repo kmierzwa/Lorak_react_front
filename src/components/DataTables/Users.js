@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import {Container,Row,Col} from "react-bootstrap";
 import AddButton from "../AddButton";
 import RemoveButton from "../RemoveButton"
+import Header from "../Header";
 import axios from "axios";
 import configData from "../../config.json";
 import '../../App.css';
@@ -19,6 +20,7 @@ const GetUsers = () => {
   //onsubmit dodaje zeby przeladowac komponent
   return (
     <>
+    <Header />
     <Container>
       <Row className="add-space">
         <Col><AddButton onSubmit={setUsers} />

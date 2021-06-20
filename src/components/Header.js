@@ -3,7 +3,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => (
-  <Navbar bg="light" expand="lg">
+  <Navbar bg="dark" variant="dark">
     <LinkContainer to="/">
       <Navbar.Brand>Home</Navbar.Brand>
     </LinkContainer>
