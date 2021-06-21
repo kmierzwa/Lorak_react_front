@@ -13,12 +13,11 @@ import configData from "../config.json";
 // albo do kazdej tabeli przygotować oddzielny modal - wtedy jakoś to sensownie podzielcie w katalogi.
 
 const RemoveButton = ({ onSubmit }) => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  
-  const [del, setdel] = useState("");
-  const [id, setid] = useState("");
+  // const [del, setdel] = useState("");
+  // const [id, setid] = useState("");
+
+  var del = '2'
+  var id = '2'
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,14 +31,13 @@ const RemoveButton = ({ onSubmit }) => {
           "warto obsłużyć w jakiś sposób błąd - najlepiej byłoby coś wyswietlić userowi xD"
         )
       );
-    //poprostu zamykamy, ale fajniej byłoby coś pokazać
-    setShow(false);
+
     onSubmit();
   };
 
   return (
     <>
-      <Button variant="danger" onClick={handleShow}>
+      <Button variant="danger" onClick={handleSubmit}>
         Delete user
       </Button>
     </>
