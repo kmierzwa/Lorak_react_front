@@ -5,23 +5,34 @@ import axios from "axios";
 import configData from "../config.json";
 
 
+
 const Login = ({ onSubmit }) => {
     const [login, setlogin] = useState("");
     const [pass, setpass] = useState("");
-  
+
+    const auth = async () => {
+      try {
+        const res = await axios.get(`${configData.SERVER_URL}/authenticate`, { auth: { allow: 'true' } });
+        if (res.data === true){
+          window.location = '/home'
+        }
+        else {
+          window.confirm("Wrong username or password!")
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
     const handleSubmit = (e) => {
       e.preventDefault();
       axios
         .post(`${configData.SERVER_URL}/login`, {
           login,
           pass,
-        })
-        .catch(() =>
-          console.log(
-            "warto obsłużyć w jakiś sposób błąd - najlepiej byłoby coś wyswietlić userowi xD"
-          )
-        );
-      onSubmit();
+        }).then(() => auth())
+        .catch((e) =>
+        window.confirm(e)
+        )
     }; 
     return (
         <>
