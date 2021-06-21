@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import { Container, Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
-import AddButton from "../AddButton";
-import RemoveButton from "../RemoveButton"
+import RunProcessButton from "../RunProcessButton";
 import axios from "axios";
 import configData from "../../config.json";
+import Header from "../Header";
 
 
 
@@ -19,10 +19,11 @@ const GeUnitMaster = () => {
 
   return (
     <>
+      <Header />
       <Container>
         <Row className="add-space">
-          <Col><AddButton onSubmit={setmasterunit} />
-            <RemoveButton onSubmit={setmasterunit} /> </Col>
+          <Col><RunProcessButton onSubmit={setmasterunit} />
+           </Col>
         </Row>
       </Container>
       <Container>
@@ -33,7 +34,6 @@ const GeUnitMaster = () => {
                 <tr>
                   <th>Unit Code</th>
                   <th>Unit Name</th>
-                  <th>Email</th>
                   <th>Unit Description</th>
                   <th>IncrPct</th>
                 </tr>
@@ -43,7 +43,7 @@ const GeUnitMaster = () => {
                   masterunit.map((m_unit) => (
                     <tr>
                       <td>
-                        <DropdownButton id="dropdown-basic-button" title={m_unit.unit_code}>
+                        <DropdownButton id="dropdown-basic-button" title={m_unit.UnitCode}>
                           <Dropdown.Item href="#/action-1">France</Dropdown.Item>
                           <Dropdown.Item href="#/action-2">Germany</Dropdown.Item>
                           <Dropdown.Item href="#/action-3">Poland</Dropdown.Item>

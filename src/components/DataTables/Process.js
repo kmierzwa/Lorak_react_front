@@ -11,7 +11,7 @@ const Process = () => {
     //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
     const result = await axios(configData.SERVER_URL +'/showprocess');
     setProcess(result.data);
-  }, process);
+  }, [process]);
 
   return (
     <><Header />
@@ -43,7 +43,7 @@ const Process = () => {
               <td>{proc.PayPlanManagerLastName}</td>
               <td>{proc.lastname}</td>
               <td>{proc.FirstName}</td>
-              <td>{proc.BasePay}</td>
+              <td>{proc.BasePayFTE}</td>
               <td>{proc.BasePayIncPct}</td>
               <td>{proc.BasePayIncr}</td>       
             </tr>
