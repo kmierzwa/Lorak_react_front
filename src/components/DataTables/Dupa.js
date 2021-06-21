@@ -5,20 +5,20 @@ import AddButton from "../AddButton";
 import RemoveButton from "../RemoveButton"
 import axios from "axios";
 import configData from "../../config.json";
-
-
+import Header from "../Header";
 
 const Dupa = () => {
   const [mapping, setMapping] = useState();
 
   useEffect(async () => {
     //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
-    const result = await axios(configData.SERVER_URL +'/showmappingunit');
+    const result = await axios(configData.SERVER_URL +'/showhierarchy_mapping');
     setMapping(result.data);
   }, mapping);
 
   return (
     <>
+    <Header />
     <Container>
       <Row className="add-space">
         <Col><AddButton onSubmit={setMapping} />
