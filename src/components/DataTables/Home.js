@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Jumbotron, Button, Image} from "react-bootstrap";
-import axios from "axios";
-import configData from "../../config.json";
 import '../../App.css';
 import ChartsPage from '../dashboards/bar';
 import Header from "../Header";
@@ -10,14 +8,7 @@ import SpiderPage from '../dashboards/spider';
 import logo from '../../images/Money_home.png';
 
 
-const Home = ({ users }) => {
-  const [isInputsDisplay, setInputDisplay] = useState(false);
-
-  //hooki - poczytac
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-
+const Home = () => {
   return (
     <>
     <Header />
