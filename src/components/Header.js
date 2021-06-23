@@ -5,7 +5,7 @@ import LogoutButton from "./LogoutButton";
 
 const Header = () => (
   <Navbar bg="dark" variant="dark">
-    <LinkContainer to="/">
+    <LinkContainer to="/home">
       <Navbar.Brand>Home</Navbar.Brand>
     </LinkContainer>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
