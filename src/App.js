@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GetUsers from "./components/DataTables/Users";
-import Dupa from "./components/DataTables/Dupa";
+import Hierarchy from "./components/DataTables/Hierarchy";
 import Home from "./components/DataTables/Home";
 import unitmaster from "./components/DataTables/UnitMaster";
 import Payee from "./components/DataTables/Payee";
@@ -14,7 +14,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Login} />
         <Route path="/users" component={GetUsers} />
-        <Route path="/dupa" component={Dupa} />
+        <Route path="/hierarchy" component={Hierarchy} />
         <Route path="/unitmaster" component={unitmaster} />
         <Route path="/payee" component={Payee} />
         <Route path="/process" component={Process} />

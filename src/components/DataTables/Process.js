@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import Header from "../Header";
+import {Container,Row,Col, DropdownButton, Dropdown} from "react-bootstrap";
 import axios from "axios";
 import configData from "../../config.json";
 
@@ -11,11 +12,13 @@ const Process = () => {
     //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
     const result = await axios(configData.SERVER_URL +'/showprocess');
     setProcess(result.data);
-  }, [process]);
-
+  }, []);
   return (
     <><Header />
-    <Table striped bordered hover responsive="sm">
+          <Container>
+        <Row className="add-space">
+          <Col>
+    <Table striped bordered hover>
       <thead>
         <tr>
           <th>idPayee</th>
@@ -55,6 +58,9 @@ const Process = () => {
           )}
       </tbody>
     </Table>
+    </Col>
+    </Row>
+    </Container>
     </>
   );
 };

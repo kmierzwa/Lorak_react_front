@@ -1,28 +1,43 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import {Container,Row,Col} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import AddButton from "../AddButton";
-import RemoveButton from "../RemoveButton"
+import RemoveButton from "../RemoveButton";
 import Header from "../Header";
 import axios from "axios";
 import configData from "../../config.json";
-import '../../App.css';
+import "../../App.css";
 
-
-const GetUsers = () => {
+const GetUsers = ({ onSubmit }) => {
   const [users, setUsers] = useState();
+  const [selectedUsersIds, setSelectedUsersIds] = useState([]);
+
   useEffect(async () => {
-    //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
-    const result = await axios(configData.SERVER_URL +'/showusers');
+    const result = await axios(configData.SERVER_URL + "/showusers");
     setUsers(result.data);
-  }, users);
-  let ids =['dupa','dupaa']
-  const testlog = () => {
-    for( var i = 0; i < ids.length; i++){ 
-      console.log(ids[i])
-      }
-  }
-  //onsubmit dodaje zeby przeladowac komponent
+  }, []);
+
+  const handeleRemoveUsersButton = () => {
+    setUsers(() =>{
+      users.filter((user) => !selectedUsersIds.includes(user.id_user))
+      axios
+      .post(`${configData.SERVER_URL}/removeuser`, {
+        selectedUsersIds,
+      }).then(()=> window.location.reload())
+      .catch((e) => console.log(e)
+      );
+    });
+  };
+
+  const handleSelectUserCheckbox = (isChecked, userId) => {
+    isChecked
+      ? setSelectedUsersIds((prev) => [...prev, userId])
+      : setSelectedUsersIds(
+          selectedUsersIds.filter((selectedUser) => selectedUser !== userId)
+        );
+  };
+
+
   return (
     <>
       <Header />
@@ -30,7 +45,7 @@ const GetUsers = () => {
         <Row className="add-space">
           <Col>
             <AddButton onSubmit={setUsers} />
-            <RemoveButton onSubmit={testlog}/>{" "}
+            <RemoveButton onSubmit={handeleRemoveUsersButton} />
           </Col>
         </Row>
       </Container>
@@ -55,21 +70,13 @@ const GetUsers = () => {
                         <input
                           type="checkbox"
                           id="flexCheckDefault"
-                          onChange={(e) => {
-                            if (e.target.checked === true){
-                              ids.push(user.id_user)
-                              console.log(ids.length)
+                          onChange={(e) =>
+                            handleSelectUserCheckbox(
+                              e.target.checked,
+                              user.id_user
+                            )
                           }
-                            else{
-                              console.log("usuwam")
-                              for( var i = 0; i < ids.length; i++){ 
-                                if ( ids[i] === user.id_user) { 
-                                    ids.splice(i, 1); 
-                                }
-                            
-                            }
-                          }}
-                          }></input>
+                        ></input>
                       </td>
                       <td>{user.id_user}</td>
                       <td>{user.firstname_user}</td>
@@ -80,6 +87,7 @@ const GetUsers = () => {
                 ) : (
                   <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
+                    
                   </div>
                 )}
               </tbody>

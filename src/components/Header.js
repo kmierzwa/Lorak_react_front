@@ -14,7 +14,7 @@ const Header = () => (
       <LinkContainer to="/users">
           <Nav.Link>Users</Nav.Link>
         </LinkContainer>
-        <LinkContainer to="/dupa">
+        <LinkContainer to="/hierarchy">
           <Nav.Link>Hierarchy Mapping</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/unitmaster">

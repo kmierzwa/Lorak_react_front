@@ -59,11 +59,11 @@ const Login = ({ onSubmit }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="*******"  value={pass} onChange={(e) => setpass(e.target.value)}/>
           </Form.Group>
-          <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
           <Button variant="primary" block type="submit">
             Login
+          </Button>
+          <Button variant="secondary" block type="submit">
+            Login with SSO
           </Button>
         </Form>
       </Col>
