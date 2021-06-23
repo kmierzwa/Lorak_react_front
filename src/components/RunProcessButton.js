@@ -20,7 +20,7 @@ const RunProcessButton = ({ onSubmit }) => {
         unitcode,
         incrpct,
       })
-      .catch((e) =>
+      .then(()=> window.location.reload()).catch((e) =>
         console.log(e)
       );
     setShow(false);
@@ -42,7 +42,7 @@ const RunProcessButton = ({ onSubmit }) => {
               <Form.Label>UnitCode</Form.Label>
               <DropdownButton id="dropdown-basic-button" title={unitcode} block>
                 <Dropdown.Item onSelect={() => setUnitCode("France")} >France</Dropdown.Item>
-                <Dropdown.Item onSelect={() => setUnitCode("Gremany")}>Germany</Dropdown.Item>
+                <Dropdown.Item onSelect={() => setUnitCode("Germany")}>Germany</Dropdown.Item>
                 <Dropdown.Item onSelect={() => setUnitCode("Poland")} >Poland</Dropdown.Item>
               </DropdownButton>
               <Form.Label>Incr %</Form.Label>

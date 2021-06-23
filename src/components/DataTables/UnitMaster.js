@@ -12,16 +12,10 @@ const GeUnitMaster = () => {
   const [masterunit, setmasterunit] = useState();
 
   useEffect(async () => {
-    //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
     const result = await axios(configData.SERVER_URL + '/showmasterunit');
     setmasterunit(result.data);
-}, []);
+  }, masterunit);
 
-const setUnitCode = (unitcode) => {
-  axios
-    .post(`${configData.SERVER_URL}/setunitcode`, {
-      unitcode,
-    })}
   return (
     <>
       <Header />
@@ -47,12 +41,7 @@ const setUnitCode = (unitcode) => {
                 {masterunit ? (
                   masterunit.map((m_unit) => (
                     <tr>
-                      <td>
-                        <DropdownButton id="dropdown-basic-button" title={m_unit.UnitCode}>
-                <           Dropdown.Item onSelect={() => setUnitCode("France")} >France</Dropdown.Item>
-                <           Dropdown.Item onSelect={() => setUnitCode("Gremany")}>Germany</Dropdown.Item>
-                <           Dropdown.Item onSelect={() => setUnitCode("Poland")} >Poland</Dropdown.Item>
-                        </DropdownButton></td>
+                      <td>{m_unit.UnitCode}</td>
                       <td>{m_unit.UnitName}</td>
                       <td>{m_unit.UnitDescription}</td>
                       <td>{m_unit.IncrPct}</td>

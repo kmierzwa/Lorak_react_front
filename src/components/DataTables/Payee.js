@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import {Container,Row,Col, DropdownButton, Dropdown} from "react-bootstrap";
-import AddButton from "../AddButton";
 import Header from "../Header";
-import RemoveButton from "../RemoveButton"
 import axios from "axios";
 import configData from "../../config.json";
 
@@ -17,6 +15,14 @@ const GetPayees = () => {
     const result = await axios(configData.SERVER_URL +'/showpayee');
     setPayees(result.data);
   }, []);
+
+  const handleSubmit = (unitCode,idPayee) => {
+    axios
+      .post(`${configData.SERVER_URL}/changeunit`, {
+        idPayee,
+        unitCode,
+      }).then(()=> window.location.reload())
+  };
 
   return (
     <>
@@ -45,11 +51,11 @@ const GetPayees = () => {
                 <td>{payee.birth_date}</td>
                 <td>{payee.home_phone}</td>
                 <td>
-                  <DropdownButton id="dropdown-basic-button" title={payee.unit_code}>
-                  <Dropdown.Item href="#/action-1">France</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Germany</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Poland</Dropdown.Item>
-                  </DropdownButton></td>
+                <DropdownButton id="dropdown-basic-button" title={payee.unit_code} block>
+                <Dropdown.Item onSelect={() => handleSubmit("France",payee.idPayee)} >France</Dropdown.Item>
+                <Dropdown.Item onSelect={() => handleSubmit("Germany",payee.idPayee)}>Germany</Dropdown.Item>
+                <Dropdown.Item onSelect={() => handleSubmit("Poland",payee.idPayee)} >Poland</Dropdown.Item>
+              </DropdownButton></td>
               </tr>
             ))
           ) : (

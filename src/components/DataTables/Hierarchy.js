@@ -40,12 +40,7 @@ const Hierarchy = () => {
             mapping.map((map) => (
               <tr>
                 <td>{map.UserId}</td>
-                <td>
-                  <DropdownButton id="dropdown-basic-button" title={map.UnitCode}>
-                  <Dropdown.Item href="#/action-1">France</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Germany</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Poland</Dropdown.Item>
-                  </DropdownButton></td>
+                <td>{map.UnitCode}</td>
               </tr>
             ))
           ) : (
