@@ -7,7 +7,7 @@ import axios from "axios";
 import configData from "../../config.json";
 import Header from "../Header";
 
-const Dupa = () => {
+const Hierarchy = () => {
   const [mapping, setMapping] = useState();
 
   useEffect(async () => {
@@ -62,4 +62,4 @@ const Dupa = () => {
   );
 };
 
-export default Dupa;
+export default Hierarchy;

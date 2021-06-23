@@ -16,17 +16,11 @@ const GetPayees = () => {
     //dobrze byloby obsłuzyć błąd serwera - i napisać coś userowi - dałem loading - ale tak naprawde powinny być 3 stany: ok, loading, błąd
     const result = await axios(configData.SERVER_URL +'/showpayee');
     setPayees(result.data);
-  }, payees);
+  }, []);
 
   return (
     <>
-    <Header />
-    <Container>
-      <Row className="add-space">
-        <Col><AddButton onSubmit={setPayees} />
-        <RemoveButton onSubmit={setPayees} /> </Col>
-      </Row>
-      </Container>    
+    <Header />   
       <Container>
         <Row className="add-space">
           <Col>

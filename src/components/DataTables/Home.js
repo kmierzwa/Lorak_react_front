@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Row, Col, Jumbotron, Button, Image} from "react-bootstrap";
 import '../../App.css';
 import ChartsPage from '../dashboards/bar';

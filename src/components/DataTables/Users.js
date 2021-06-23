@@ -20,13 +20,11 @@ const GetUsers = ({ onSubmit }) => {
   const handeleRemoveUsersButton = () => {
     setUsers(() =>{
       users.filter((user) => !selectedUsersIds.includes(user.id_user))
-      console.log(selectedUsersIds.length)
       axios
       .post(`${configData.SERVER_URL}/removeuser`, {
         selectedUsersIds,
       }).then(()=> window.location.reload())
-      .catch((e) =>
-        console.log(e)
+      .catch((e) => console.log(e)
       );
     });
   };
@@ -89,6 +87,7 @@ const GetUsers = ({ onSubmit }) => {
                 ) : (
                   <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
+                    
                   </div>
                 )}
               </tbody>
