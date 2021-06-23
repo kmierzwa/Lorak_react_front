@@ -30,11 +30,9 @@ const ModalButton = ({ onSubmit }) => {
         lastName,
         login,
         pass,
-      })
-      .catch(() =>
-        console.log(
-          "warto obsłużyć w jakiś sposób błąd - najlepiej byłoby coś wyswietlić userowi xD"
-        )
+      }).then(()=> window.location.reload())
+      .catch((e) =>
+        console.log(e)
       );
     //poprostu zamykamy, ale fajniej byłoby coś pokazać
     setShow(false);

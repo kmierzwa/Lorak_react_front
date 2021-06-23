@@ -8,29 +8,27 @@ import axios from "axios";
 import configData from "../../config.json";
 import "../../App.css";
 
-const GetUsers = () => {
+const GetUsers = ({ onSubmit }) => {
   const [users, setUsers] = useState();
   const [selectedUsersIds, setSelectedUsersIds] = useState([]);
 
   useEffect(async () => {
-    debugger;
     const result = await axios(configData.SERVER_URL + "/showusers");
     setUsers(result.data);
-    //ta tablica na dole ma zawierac komponenty które jeżeli się zmienią - ten useEffect jest wołany -
-    // dla treningu spróbuj teraz usunąć usera - poprostu się usunie, a jak dodasz users do tablicy
-    //to sfetchuje się na nowo. teraz macie znowu decyzje architektury  - opcje są takie
-    // 1 wysyłasz idiki na backend i tylko usuwasz ze state userów - raczej zły pomysł bo jak coś pójdzie nie tak to na backendzie zostaną userzy - chyba że wyświetlisz bład...
-    // 2. backend morze odrazu zwracać wszystkich userów i tylko aktualizujesz state
-    // 3. Wymuszasz wywołanie useEffect
-    // Kolejną sprawą jest jak to będzie usuwane - czy przygotujesz api na jedno id i wtedy requesty w pętli
-    // czy 1 request z tablicą
   }, []);
 
   const handeleRemoveUsersButton = () => {
-    //tutaj aktualizuję state tak tylko żeby wam pokazać, ale docelowo tu ma iść request na backend (checkbox zostaje zaznaczony - nie chce mi się z tym bawić bo docelowo i tak userzy będą fetchowani na nowo chyba)
-    setUsers(() =>
+    setUsers(() =>{
       users.filter((user) => !selectedUsersIds.includes(user.id_user))
-    );
+      console.log(selectedUsersIds.length)
+      axios
+      .post(`${configData.SERVER_URL}/removeuser`, {
+        selectedUsersIds,
+      }).then(()=> window.location.reload())
+      .catch((e) =>
+        console.log(e)
+      );
+    });
   };
 
   const handleSelectUserCheckbox = (isChecked, userId) => {
@@ -40,6 +38,7 @@ const GetUsers = () => {
           selectedUsersIds.filter((selectedUser) => selectedUser !== userId)
         );
   };
+
 
   return (
     <>
